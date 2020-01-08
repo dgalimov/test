@@ -4,7 +4,7 @@ def matrix_spiral_print(M):
 
     result = []
 
-    while lowerBound < upperBound:
+    while lowerBound <= upperBound:
         rightBound = len(M[lowerBound]) - lowerBound # maximum right index. Mimimum left index will be equal to lowerBound
 
         # going from left to right
