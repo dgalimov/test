@@ -1,6 +1,7 @@
 def matrix_spiral_print(M):
     lowerBound = 0
     upperBound = len(M) - 1
+    totalCount = sum(len(element) for element in M)
 
     result = []
 
@@ -11,15 +12,18 @@ def matrix_spiral_print(M):
         result += [M[lowerBound][element] for element in range(lowerBound, rightBound)]
 
         # going  from top to bottom (right side)
-        for i in range(lowerBound + 1, upperBound):
-            result += [M[i][-1 - lowerBound]]
+        if len(result) < totalCount:
+            for i in range(lowerBound + 1, upperBound):
+                result += [M[i][-1 - lowerBound]]
 
         # going from right to left
-        result += [M[upperBound][element] for element in range(lowerBound, rightBound)][::-1]
+        if lowerBound != upperBound:
+            result += [M[upperBound][element] for element in range(lowerBound, rightBound)][::-1]
 
         # going from bottom to top (left side)
-        for i in range(upperBound-1, lowerBound, -1):
-            result += [M[i][lowerBound]]
+        if len(result) < totalCount:
+            for i in range(upperBound-1, lowerBound, -1):
+                result += [M[i][lowerBound]]
 
         # updating our border counters
         lowerBound += 1
@@ -36,11 +40,11 @@ grid = [
 ]
 
 # testing
-# Mlength = 5
-# Msize = 6
-#
+# Mlength = 1
+# Msize = 10
+# 
 # grid = [[element for element in range(row * Mlength + 1, (row + 1) * Mlength + 1)] for row in range (Msize)]
-#
+# 
 # for row in grid:
 #     print(row)
 # end testing
